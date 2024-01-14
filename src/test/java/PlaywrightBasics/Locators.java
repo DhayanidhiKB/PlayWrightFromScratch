@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Locators {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Playwright playwright = Playwright.create();
 
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
@@ -19,12 +19,16 @@ public class Locators {
         demoButton.locator("nth=1").click();//nth= locator passing a zero-based index.
 
         Locator countryOptions= page.locator("select#Form_getForm_Country");
+        countryOptions.click();
+        Thread.sleep(5000);
         System.out.println(countryOptions.count());
 
         List<String> options=countryOptions.allTextContents();
-        /*for(String countries:options){
+        Thread.sleep(5000);
+        for(String countries:options){
             System.out.println(countries);
-        }*/
+
+        }
        // options.forEach(ele-> System.out.println(ele));
 
 
